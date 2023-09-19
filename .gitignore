@@ -44,6 +44,6 @@ app.*.map.json
 /android/app/release
 
 # Project exclude paths
-/lib/ui/
-/lib/ui/screens/
-/lib/ui/screens/home screen/
+#/lib/ui/
+#/lib/ui/screens/
+#/lib/ui/screens/home screen/

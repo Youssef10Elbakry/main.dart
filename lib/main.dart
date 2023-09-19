@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/ui/screens/content%20screen/quran_or_hadeth_screen.dart';
 import 'package:islami_app/ui/screens/home screen/home_screen.dart';
 
 void main() {
@@ -12,7 +13,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       routes: {
-        HomeScreen.routeName: (_)=>const HomeScreen()
+        HomeScreen.routeName: (_)=> HomeScreen(),
+        QuranOrHadethScreen.routeName: (_)=> QuranOrHadethScreen()
       },
       initialRoute: HomeScreen.routeName,
     );
