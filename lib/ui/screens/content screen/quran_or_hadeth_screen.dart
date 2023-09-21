@@ -49,9 +49,9 @@ class _QuranOrHadethScreen extends State{
             textDirection: TextDirection.rtl,
             children: [
               const Spacer(flex: 1,),
-              Center(child: Text(" سورة ${arguments.quranOrHadethname}", style: const TextStyle(fontSize: 35),)),
+              Center(child: Text(arguments.isQuran?"سورة ${arguments.quranOrHadethname}":arguments.quranOrHadethname, style: const TextStyle(fontSize: 35),)),
               const Divider(thickness: 3, color: AppColors.primary,),
-              Expanded(flex:9, child: ListView(children: [Text(surahOrhadethContent, style: const TextStyle(fontSize: 25), textAlign: TextAlign.right,)]))
+              Expanded(flex:9, child: ListView(children: [surahOrhadethContent.isEmpty?const CircularProgressIndicator():Text(surahOrhadethContent, style: const TextStyle(fontSize: 25), textAlign: TextAlign.right,)]))
             ],
           ),
         ),
@@ -60,10 +60,17 @@ class _QuranOrHadethScreen extends State{
   }
 
   void getSurahOrHadethContent() async {
+    // List<String> arabicNumbers = ['٠', '١', '٢', '٣','٤', '٥', '٦','٧', '٨', '٩'];
+    // List<String> ayat = [];
+    // String surahWithAyahNumber = "";
     if(arguments.isQuran){
-      print("yes");
       surahOrhadethContent = await rootBundle.loadString("assets/quran_files/${arguments.fileName}.txt");
-      print("surah: $surahOrhadethContent");
+      // ayat = surahOrhadethContent.split("\n");
+      // for(int i = 0; i<ayat.length; i++) {
+      //   surahWithAyahNumber += "${ayat[i]}(١)";
+      //
+      // }
+      // surahOrhadethContent = surahWithAyahNumber;
       setState(() {});
     }
     else{
@@ -71,6 +78,13 @@ class _QuranOrHadethScreen extends State{
       setState(() {});
     }
 
+  }
+
+  String convertToArabicNumber(int number){
+    List<String> arabicNumbers = ['٠', '١', '٢', '٣','٤', '٥', '٦','٧', '٨', '٩'];
+    List<int> englishNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    int index = englishNumbers.indexOf(number);
+    return arabicNumbers[index];
   }
 
 }
