@@ -5,6 +5,7 @@ import 'package:islami_app/ui/screens/content%20screen/quran_or_hadeth_screen.da
 import '/ui/utilities/app_images.dart';
 import '/ui/utilities/app_colors.dart';
 import '/ui/utilities/app_constants.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class QuranTab extends StatelessWidget{
   const QuranTab({super.key});
   @override
@@ -13,7 +14,7 @@ class QuranTab extends StatelessWidget{
       children: [
         Center(child: Image.asset(AppImages.quranScreenLogo)),
         const Divider(thickness: 3, color: AppColors.primary,),
-        const Text("Surah Name", style: TextStyle(color: AppColors.accent, fontSize: 30)),
+        Text(AppLocalizations.of(context)!.surahName),
         const Divider(thickness: 3, color: AppColors.primary,),
         Expanded(
           child: ListView.builder(
@@ -24,7 +25,7 @@ class QuranTab extends StatelessWidget{
                   Navigator.pushNamed(context, QuranOrHadethScreen.routeName,
                       arguments: QuranOrHadethDataToShow(fileName: "${index+1}", quranOrHadethname: AppConstants.surahNames[index], isQuran: true));
                 },
-                    child: Text(AppConstants.surahNames[index], style: const TextStyle(color: AppColors.accent),)
+                    child: Text(AppConstants.surahNames[index])
                 );
               }
           ),

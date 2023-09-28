@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:islami_app/provider/settings_provider.dart';
 import 'package:islami_app/ui/utilities/app_images.dart';
+import 'package:provider/provider.dart';
 
 import '../../info class/quran_or_hadeth_data.dart';
 import '../../utilities/app_colors.dart';
@@ -17,15 +19,17 @@ class QuranOrHadethScreen extends StatefulWidget {
 class _QuranOrHadethScreen extends State{
   late QuranOrHadethDataToShow arguments;
   String surahOrhadethContent = "";
+  late SettingsProvider provider;
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context);
     arguments = ModalRoute.of(context)!.settings.arguments as QuranOrHadethDataToShow;
     if(surahOrhadethContent.isEmpty) {getSurahOrHadethContent();}
 
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(AppImages.defaultBackgroundImage)
+              image: AssetImage(provider.currentTheme == ThemeMode.light ? AppImages.defaultBackgroundImage : AppImages.darkBackgroundImage)
           )
       ),
       child: Scaffold(
@@ -34,8 +38,6 @@ class _QuranOrHadethScreen extends State{
           backgroundColor: AppColors.transparent,
           title: const Text(
             "Islami",
-            style: TextStyle(
-                color: AppColors.accent, fontWeight: FontWeight.bold),
           ),
           centerTitle: true,
           elevation: 0,
@@ -49,9 +51,9 @@ class _QuranOrHadethScreen extends State{
             textDirection: TextDirection.rtl,
             children: [
               const Spacer(flex: 1,),
-              Center(child: Text(arguments.isQuran?"سورة ${arguments.quranOrHadethname}":arguments.quranOrHadethname, style: const TextStyle(fontSize: 35),)),
+              Center(child: Text(arguments.isQuran?"سورة ${arguments.quranOrHadethname}":arguments.quranOrHadethname)),
               const Divider(thickness: 3, color: AppColors.primary,),
-              Expanded(flex:9, child: ListView(children: [surahOrhadethContent.isEmpty?const CircularProgressIndicator():Text(surahOrhadethContent, style: const TextStyle(fontSize: 25), textAlign: TextAlign.right,)]))
+              Expanded(flex:9, child: ListView(children: [surahOrhadethContent.isEmpty?const CircularProgressIndicator():Text(surahOrhadethContent)]))
             ],
           ),
         ),

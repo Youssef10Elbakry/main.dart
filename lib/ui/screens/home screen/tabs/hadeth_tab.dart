@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../info class/quran_or_hadeth_data.dart';
 import '../../../utilities/app_colors.dart';
 import '../../../utilities/app_constants.dart';
@@ -15,7 +15,7 @@ class HadethTab extends StatelessWidget {
       children: [
         Center(child: Image.asset(AppImages.logoHadeth)),
         const Divider(thickness: 3, color: AppColors.primary,),
-        const Text("Hadeth Name", style: TextStyle(color: AppColors.accent, fontSize: 30)),
+        Text(AppLocalizations.of(context)!.hadethName),
         const Divider(thickness: 3, color: AppColors.primary,),
         Expanded(
           child: ListView.builder(
@@ -26,7 +26,7 @@ class HadethTab extends StatelessWidget {
                   Navigator.pushNamed(context, QuranOrHadethScreen.routeName,
                       arguments: QuranOrHadethDataToShow(fileName: "h${index+1}", quranOrHadethname: hadethNamesInCorrectOrder[index], isQuran: false));
                 },
-                    child: Text(hadethNamesInCorrectOrder[index], style: const TextStyle(color: AppColors.accent),)
+                    child: Text(hadethNamesInCorrectOrder[index])
                 );
               }
           ),
