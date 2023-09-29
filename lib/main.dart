@@ -17,9 +17,12 @@ void main() {
 
 class MyApp extends StatelessWidget {
   late SettingsProvider provider;
+
   @override
   Widget build(BuildContext context){
     provider = Provider.of(context);
+    provider.getLanguagePrefs();
+    provider.getThemePrefs();
     return MaterialApp(
       localizationsDelegates: const [
         GlobalMaterialLocalizations.delegate,
@@ -31,10 +34,10 @@ class MyApp extends StatelessWidget {
         Locale('en'),
         Locale('ar'),
       ],
-      themeMode: provider.currentTheme,
+      themeMode: provider.currMode == "Light" ? ThemeMode.light : ThemeMode.dark,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
-      locale: provider.currentLocale,
+      locale: provider.currLanguage == "English" ? const Locale("en") : const Locale("ar"),
       routes: {
         HomeScreen.routeName: (_)=> HomeScreen(),
         QuranOrHadethScreen.routeName: (_)=> const QuranOrHadethScreen()

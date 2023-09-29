@@ -1,18 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:islami_app/provider/settings_provider.dart';
 import 'package:provider/provider.dart';
 
 class SettingsTab extends StatefulWidget{
+  const SettingsTab({super.key});
+
   @override
   State<StatefulWidget> createState() => _SettingsTab();
 
 }
 
 class _SettingsTab extends State{
-  late bool isArabic;
-  late bool isDarkMode;
   late SettingsProvider provider;
   @override
   Widget build(BuildContext context) {
@@ -30,12 +29,11 @@ class _SettingsTab extends State{
               Switch(value: provider.isArabic(),
                   onChanged: (value){
                 if(value){
-                  provider.setCurrentLocale(const Locale("ar"));
+                  provider.setLanguagePrefs("Arabic");
                 }
                 else{
-                  provider.setCurrentLocale(const Locale("en"));
+                  provider.setLanguagePrefs("English");
                 }
-                isArabic = value;
                 setState(() {});
                   }
               )
@@ -48,12 +46,11 @@ class _SettingsTab extends State{
               Switch(value: provider.isDark(),
                   onChanged: (value){
                 if(value){
-                  provider.setCurrentMode(ThemeMode.dark);
+                  provider.setThemePrefs("Dark");
                 }
                 else{
-                  provider.setCurrentMode(ThemeMode.light);
+                  provider.setThemePrefs("Light");
                 }
-                isDarkMode = value;
                 setState(() {});
                   }
               )

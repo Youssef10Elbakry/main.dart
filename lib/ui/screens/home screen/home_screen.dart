@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:islami_app/provider/settings_provider.dart';
 import 'package:islami_app/ui/screens/home%20screen/tabs/hadeth_tab.dart';
 import 'package:islami_app/ui/screens/home%20screen/tabs/quran_tab.dart';
@@ -13,12 +12,14 @@ import '/ui/utilities/app_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = "Home Screen";
+
+  const HomeScreen({super.key});
   @override
   _HomeScreen createState() => _HomeScreen();
 }
 
 class _HomeScreen extends State {
-  List<Widget> tabs = [const RadioTab(), SebhaTab(), HadethTab(), const QuranTab(), SettingsTab()];
+  List<Widget> tabs = [const RadioTab(), SebhaTab(), HadethTab(), const QuranTab(), const SettingsTab()];
   late SettingsProvider provider;
 
   int i = 0;
@@ -28,7 +29,7 @@ class _HomeScreen extends State {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(provider.currentTheme == ThemeMode.light ? AppImages.defaultBackgroundImage : AppImages.darkBackgroundImage))),
+                image: AssetImage(provider.currMode == "Light" ? AppImages.defaultBackgroundImage : AppImages.darkBackgroundImage))),
         child: Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.transparent,

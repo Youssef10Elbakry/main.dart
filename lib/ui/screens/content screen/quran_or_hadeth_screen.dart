@@ -29,7 +29,7 @@ class _QuranOrHadethScreen extends State{
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage(provider.currentTheme == ThemeMode.light ? AppImages.defaultBackgroundImage : AppImages.darkBackgroundImage)
+              image: AssetImage(provider.currMode == "Light" ? AppImages.defaultBackgroundImage : AppImages.darkBackgroundImage)
           )
       ),
       child: Scaffold(

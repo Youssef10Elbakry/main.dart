@@ -59,7 +59,7 @@ class _State extends State {
           ),
         ),
         const Spacer(),
-        const Text("عدد التسبيحات", style: TextStyle(color: AppColors.accent, fontSize: 25, fontWeight: FontWeight.w600),),
+        const Text("عدد التسبيحات"),
         const SizedBox(height: 10,),
         Container(
           decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(30)),
@@ -73,7 +73,7 @@ class _State extends State {
           width: width*0.32,
           decoration: BoxDecoration(color: AppColors.primary, borderRadius: BorderRadius.circular(30))
           ,
-          child: Center(child: Text(onScreenText, style: const TextStyle(color: AppColors.white, fontWeight: FontWeight.w400, fontSize: 25),)),
+          child: Center(child: Text(onScreenText)),
         ),
         const Spacer()
       ],
