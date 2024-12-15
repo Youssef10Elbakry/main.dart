@@ -29,6 +29,7 @@ class _HomeScreen extends State {
     return Container(
         decoration: BoxDecoration(
             image: DecorationImage(
+              fit: BoxFit.fill,
                 image: AssetImage(provider.currMode == "Light" ? AppImages.defaultBackgroundImage : AppImages.darkBackgroundImage))),
         child: Scaffold(
           appBar: AppBar(
